@@ -4,6 +4,10 @@
     import Form from "./lib/Form.svelte";
     import Paper from "./lib/Paper.svelte";
 
+    let { test } = $props();
+
+    console.log(test);
+
     let paperVisible = $state(false);
 
     let title = $state("Title goes here");
@@ -31,5 +35,6 @@
         overflow: hidden;
         justify-content: center;
         align-items: center;
+        background-color: gray;
     }
 </style>

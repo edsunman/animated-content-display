@@ -6,6 +6,7 @@
     let { title, body, image, hidePaper } = $props();
 
     let showLine = $state(false);
+    let showGlow = $state(false);
 
     onMount(() => {
         setTimeout(() => {
@@ -16,7 +17,7 @@
 
 <div
     class="paper"
-    style:background-image={`url(${import.meta.env.VITE_IMAGE_FILEPATH}paper.png)`}
+    style:background-image={`url(${import.meta.env.VITE_IMAGE_FILEPATH}paper${showGlow ? "_glow" : ""}.png)`}
     in:fly={{ x: -2000, duration: 1800, easing: quartOut }}
     out:fly={{ x: 2000, duration: 2000, easing: cubicIn }}
 >
@@ -38,7 +39,16 @@
     ></div>
     <div class="paperClose">
         <!-- svelte-ignore a11y_consider_explicit_label -->
-        <button onclick={() => hidePaper()}>
+        <button
+            onclick={() => {
+                showGlow = true;
+                console.log(showGlow);
+                setTimeout(() => {
+                    hidePaper();
+                }, 10);
+                //
+            }}
+        >
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 height="40px"
@@ -64,6 +74,7 @@
         grid-template-columns: 50% 50%;
         grid-template-rows: 20% 80%;
         background-size: 100% 100%;
+        transition: background-image 1s;
     }
 
     :global(.paperParagraph p) {
@@ -80,7 +91,7 @@
         scrollbar-color: var(--paper-scroll-color) rgba(0, 0, 0, 0);
         scrollbar-width: thin;
         grid-column-start: 1;
-        padding-right: 1em;
+        padding: 0 1em 0 1em;
         line-height: 1.8em;
     }
 
@@ -116,6 +127,10 @@
         grid-column-start: 2;
         grid-row-start: 1;
         justify-self: end;
+    }
+
+    .paperHeading {
+        margin-left: 1em;
     }
 
     h1 {
