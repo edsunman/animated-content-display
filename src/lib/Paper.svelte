@@ -40,9 +40,13 @@
 
 <style>
     .paper {
+        place-self: center center;
+        max-width: 80%;
+        max-height: 80%;
+
         display: grid;
         padding: 6%;
-        width: 78%;
+
         aspect-ratio: 16 / 9;
         grid-template-columns: 50% 50%;
         grid-template-rows: 20% 80%;

@@ -25,7 +25,9 @@
 
 <style>
     .paperContainer {
-        display: flex;
+        display: grid;
+        grid-template-columns: 1;
+        grid-auto-rows: 100%;
         width: 100%;
         height: 100%;
         overflow: hidden;
