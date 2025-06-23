@@ -6,13 +6,11 @@
 
     let paperVisible = $state(false);
 
-    let title = $state("title");
+    let title = $state("Title goes here");
     let body = $state(
         "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. </p><p>Duis accumsan at diam nec semper. Nullam feugiat eros ante, at hendrerit ligula cursus non. Nunc feugiat, antehendrerit luctus scelerisque, libero magna consectetur urna, id consequat purus risunec sapien. Cras euismod elit in nisl dignissim elementum. </p>"
     );
-    let image = $state(
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3d/Williams_FW06.jpg/1280px-Williams_FW06.jpg"
-    );
+    let image = $state("https://picsum.photos/600");
 </script>
 
 <div class="paperContainer">

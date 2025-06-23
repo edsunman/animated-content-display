@@ -1,8 +1,17 @@
 <script lang="ts">
     import { fade, fly } from "svelte/transition";
     import { cubicIn, quartOut } from "svelte/easing";
+    import { onMount } from "svelte";
 
     let { title, body, image, hidePaper } = $props();
+
+    let showLine = $state(false);
+
+    onMount(() => {
+        setTimeout(() => {
+            showLine = true;
+        }, 1000);
+    });
 </script>
 
 <div
@@ -12,6 +21,7 @@
 >
     <div class="paperHeading">
         <h1 in:fade={{ delay: 1000, duration: 2000 }}>{title}</h1>
+        <div class={["paperLine", showLine ? "show" : ""]}></div>
     </div>
     <div class="paperParagraph" in:fade={{ delay: 2200, duration: 2000 }}>
         {@html body}
@@ -64,7 +74,7 @@
 
     .paperParagraph {
         overflow-y: auto;
-        scrollbar-color: black rgba(0, 0, 0, 0);
+        scrollbar-color: #5d5b59 rgba(0, 0, 0, 0);
         scrollbar-width: thin;
         grid-column-start: 1;
         padding-right: 1em;
@@ -82,6 +92,25 @@
         mask-size: 100% 100%;
     }
 
+    .paperLine {
+        width: 70%;
+        aspect-ratio: 10/ 1;
+        background-image: url("/line.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+        mask-image: linear-gradient(#fff, #fff);
+        mask-mode: luminance;
+        mask-size: 0% 100%;
+        mask-repeat: no-repeat;
+        transition: all 3s;
+        opacity: 0%;
+    }
+
+    .paperLine.show {
+        mask-size: 100% 100%;
+        opacity: 60%;
+    }
+
     .paperClose {
         grid-column-start: 2;
         grid-row-start: 1;
@@ -94,6 +123,7 @@
         font-style: normal;
         font-weight: 600;
         margin: 0;
+        margin-bottom: 10px;
     }
 
     button {
